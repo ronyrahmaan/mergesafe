@@ -1,0 +1,68 @@
+# MergeSafe Default Configuration
+# Override via CLI flags or Hydra overrides
+
+# Base model
+model:
+  name: "meta-llama/Llama-3.2-1B"
+  dtype: float32
+
+# Attack settings
+attack:
+  type: badnets  # badnets, wanet, sleeper
+  poison_ratio: 0.1
+  target_label: 0
+  trigger_pattern: "cf"
+
+# LoRA settings
+lora:
+  rank: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - v_proj
+    - k_proj
+    - o_proj
+
+# Training
+training:
+  epochs: 3
+  learning_rate: 2e-4
+  batch_size: 8
+  max_length: 256
+  weight_decay: 0.01
+
+# Merging
+merging:
+  methods:
+    - task_arithmetic
+    - ties
+    - dare_ties
+    - dare_linear
+    - slerp
+  ties_density: 0.5
+  dare_density: 0.5
+  slerp_t: 0.5
+  weight: 0.5
+
+# Scanner
+scanner:
+  spectral_threshold: 2.0
+  weight_threshold: 2.5
+  risk_threshold: 0.5
+  activation_silhouette_threshold: 0.15
+  n_probe_samples: 200
+
+# Evaluation
+evaluation:
+  dataset: sst2
+  test_split: "test[:500]"
+  batch_size: 16
+
+# Experiment
+experiment:
+  seed: 42
+  seeds: [42, 123, 456, 789, 1024]
+  output_dir: results
+  wandb_project: mergesafe
+  wandb_enabled: false

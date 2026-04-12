@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Data & Models (large files)
+data/raw/
+data/models/
+data/merged/
+data/poisoned/
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+!configs/*.yaml
+
+# Results (keep structure, ignore large outputs)
+results/*/checkpoints/
+results/*/models/
+
+# Experiment tracking
+wandb/
+mlruns/
+outputs/
+multirun/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.key
+credentials.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# LaTeX build
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/*.fdb_latexmk
+paper/*.fls
+
+# Keep results metadata, exclude model weights
+results/matrix/runs/
+results/adaptive_*/
+results/e2e_run_*/
+!results/matrix/results.jsonl
+!results/matrix/summary.csv
+
+
+# Paper PDFs (shared via preprint servers, not repo)
+/*.pdf
+paper/*.pdf
+!figures/*.pdf
+
+
